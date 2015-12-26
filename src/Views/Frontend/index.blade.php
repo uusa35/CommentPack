@@ -158,8 +158,8 @@
                             {!! Form::hidden('book_id',$book->id) !!}
                             {!! Form::hidden('user_id',Auth::id()) !!}
                             <div class="input-group">
-                            {!! Form::textarea('body','',['class' => "form-control" , 'placeholder' =>"إضافة تعليق" , 'rows'=>"4"]) !!}
-                    <span class="input-group-addon">
+                                {!! Form::textarea('body','',['class' => "form-control" , 'placeholder' =>"إضافة تعليق" , 'rows'=>"4"]) !!}
+                                <span class="input-group-addon">
                         <button type="submit"><i class="fa fa-comments"></i></button>
                     </span>
                             </div>
@@ -244,15 +244,17 @@
                                                 @endif
                                                 <div class="row comments-list">
                                                     <div class="col-lg-11 col-lg-offset-1">
-                                                        <form method="post" action="{{ route(Config::get('CommentPack.postChildCommentRoute')) }}">
+                                                        <form method="post"
+                                                              action="{{ route(Config::get('CommentPack.postChildCommentRoute')) }}">
                                                             {!! Form::token() !!}
                                                             {!! Form::hidden('comment_id',$comment->id) !!}
                                                             {!! Form::hidden('user_id',Auth::id()) !!}
                                                             <div class="input-group">
                                                                 {!! Form::textarea('body','',['class' => "form-control" , 'placeholder' => "إضافة رد" , 'rows'=>"1"]) !!}
                                                                 <span class="input-group-addon">
-                        <button type="submit"><i class="fa fa-comments"></i></button>
-                    </span>
+                                                                    <button type="submit"><i class="fa fa-comments"></i>
+                                                                    </button>
+                                                                </span>
                                                             </div>
                                                         </form>
                                                     </div>
@@ -265,6 +267,9 @@
                                         </div>
                                     </ul>
                                 </div>
+                            @else
+                                <div class="alert alert-warning"
+                                     role="alert">{{ trans('messages.no_comments') }}</div>
                             @endif
                         </div>
                     </div>
