@@ -9,7 +9,7 @@
       "email": "uusa35@gmail.com"
     }
   ],
-  "minimum-stability": "dev-master",
+  "minimum-stability": "dev",
   "require": {
     "illuminate/support": "~5"
   }
