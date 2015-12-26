@@ -35,12 +35,14 @@ class CommentPackServiceProvider extends ServiceProvider
         ]);
 
         // database
+        $migrationPath = __DIR__.'/Database/migrations';
         $this->publishes([
-            __DIR__.'/Database/migrations/' => database_path('migrations')
+            $migrationPath => base_path('database/migrations'),
         ], 'migrations');
+
         // seeds
         $this->publishes([
-            __DIR__.'/Database/seeds/' => database_path('seeds')
+            __DIR__.'/Database/seeds/' => base_path('database/seeds')
         ], 'seeds');
 
         // translations
