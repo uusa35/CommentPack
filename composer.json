@@ -12,8 +12,8 @@
   "minimum-stability": "dev",
   "autoload": {
     "classmap": [
-      "Database/migrations",
-      "Database/seeds"
+      "database/migrations",
+      "database/seeds"
     ],
     "psr-4": {
       "Usama\\CommentPack\\": "src/"
