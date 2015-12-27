@@ -35,7 +35,7 @@ class CommentPackServiceProvider extends ServiceProvider
 
         // seeds
         $this->publishes([
-            __DIR__ . '/database/seeds/' => base_path('database/seeds')
+            __DIR__ . '/database/seeds/' => database_path('seeds')
         ], 'seeds');
         // translations
         /*$this->publishes([
@@ -45,9 +45,9 @@ class CommentPackServiceProvider extends ServiceProvider
             __DIR__.'/Lang/en' => base_path('resources/lang/en'),
         ]);*/
 
-        $this->loadTranslationsFrom(__DIR__ . '/Lang', 'CommentPack');
-        $this->loadViewsFrom(__DIR__ . '/Views/', 'CommentPack');
-        $this->mergeConfigFrom(__DIR__ . '/Config/CommentPack.php', 'CommentPack');
+        $this->loadTranslationsFrom(__DIR__ . '/lang', 'CommentPack');
+        $this->loadViewsFrom(__DIR__ . '/views/', 'CommentPack');
+        $this->mergeConfigFrom(__DIR__ . '/config/CommentPack.php', 'CommentPack');
     }
 
     /**
