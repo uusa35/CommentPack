@@ -17,6 +17,30 @@ class CommentPackServiceProvider extends ServiceProvider
         // including the routes of the package
         include __DIR__ . '/Http/routes.php';
 
+        // translations
+        /*$this->publishes([
+            __DIR__.'/Lang/ar' => base_path('resources/lang/ar'),
+        ]);
+        $this->publishes([
+            __DIR__.'/Lang/en' => base_path('resources/lang/en'),
+        ]);*/
+
+        $this->loadTranslationsFrom(__DIR__.'/Lang','CommentPack');
+        $this->loadViewsFrom(__DIR__.'/Views/','CommentPack');
+        $this->mergeConfigFrom( __DIR__.'/Config/CommentPack.php', 'CommentPack');
+    }
+
+    /**
+     * Register the application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $this->app->bind('CommentPack', function ($app) {
+            return new CommentPack();
+        });
+
         /*
          * Publishing files
          *
@@ -43,34 +67,6 @@ class CommentPackServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'../database/seeds/' => base_path('database/seeds')
         ], 'seeds');
-
-        // translations
-        /*$this->publishes([
-            __DIR__.'/Lang/ar' => base_path('resources/lang/ar'),
-        ]);
-        $this->publishes([
-            __DIR__.'/Lang/en' => base_path('resources/lang/en'),
-        ]);*/
-
-        $this->loadTranslationsFrom(__DIR__.'/Lang','CommentPack');
-        $this->loadViewsFrom(__DIR__.'/Views/','CommentPack');
-        $this->mergeConfigFrom( __DIR__.'/Config/CommentPack.php', 'CommentPack');
-    }
-
-    /**
-     * Register the application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        $this->app->bind('CommentPack', function ($app) {
-            return new CommentPack();
-        });
-        /*
-         * Declaring Config
-         * */
-
 
 
     }
