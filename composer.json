@@ -13,9 +13,7 @@
   "autoload": {
     "classmap": [
       "database/migrations",
-      "database/seeds",
-      "views",
-      "config"
+      "database/seeds"
     ],
     "psr-4": {
       "Usama\\CommentPack\\": "src/"
