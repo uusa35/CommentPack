@@ -20,20 +20,22 @@ class CommentPackServiceProvider extends ServiceProvider
         * Publishing files
         * */
         // config
-        $this->publishes([__DIR__ . '/Config/CommentPack.php' => config_path('commentpack.php')], 'config');
+        /*$this->publishes([
+            __DIR__ .'/config/commentPack.php' => base_path('config/commentpack.php'),
+        ], 'config');*/
 
         // views
         $this->publishes([
-            __DIR__ . '/Views/Frontend' => base_path('resources/views/frontend/modules/comment/'),
+            __DIR__ . '/views/Frontend' => base_path('resources/views/frontend/modules/comment/'),
         ]);
         // database
         $this->publishes([
-            __DIR__ . '/Database/migrations' => database_path('migrations'),
+            __DIR__ . '/database/migrations' => database_path('migrations'),
         ], 'migrations');
 
         // seeds
         $this->publishes([
-            __DIR__ . '/Database/seeds/' => base_path('database/seeds')
+            __DIR__ . '/database/seeds/' => base_path('database/seeds')
         ], 'seeds');
         // translations
         /*$this->publishes([
