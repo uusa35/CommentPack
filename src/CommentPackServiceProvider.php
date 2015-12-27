@@ -25,9 +25,9 @@ class CommentPackServiceProvider extends ServiceProvider
         ], 'config');*/
 
         // views
-        $this->publishes([
+        /*$this->publishes([
             __DIR__ . '/views/Frontend' => base_path('resources/views/frontend/modules/comment/'),
-        ]);
+        ]);*/
         // database
         $this->publishes([
             __DIR__ . '/database/migrations' => database_path('migrations'),
