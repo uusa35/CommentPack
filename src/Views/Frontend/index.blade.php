@@ -176,7 +176,7 @@
                                             <li class="comment"
                                                 style="{{ ($key & 1) ? 'margin-top: 35px; margin-bottom: 35px;' : ''  }};">
                                                 <div class="row">
-                                                    <div class="col-lg-1">
+                                                    <div class="col-lg-1 col-xs-2">
                                                         <a class="pull-left" href="#">
                                                             <img class="img-responsive img-circle"
                                                                  src="{!! asset('images/uploads/avatar/thumbnail/'.$comment->user->avatar) !!}"
@@ -218,7 +218,7 @@
                                                         <ul class="comments-list">
                                                             <li class="comment">
                                                                 <div class="row">
-                                                                    <div class="col-lg-1 col-lg-offset-1">
+                                                                    <div class="col-lg-1 col-lg-offset-1 col-xs-2 col-xs-offset-1">
                                                                         <img class="img-responsive img-circle"
                                                                              src="{!! asset('images/uploads/avatar/thumbnail/'.$child->user->avatar )!!}"
                                                                              alt="avatar">

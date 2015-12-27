@@ -30,9 +30,9 @@ class CommentPackServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/Views/Frontend' => base_path('resources/views/frontend/modules/comment'),
         ]);
-        $this->publishes([
+        /*$this->publishes([
             __DIR__.'/Views/Backend' => base_path('resources/views/backend/modules/comment'),
-        ]);
+        ]);*/
 
         // database
         $migrationPath = __DIR__.'/Database/migrations';
