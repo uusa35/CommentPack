@@ -16,7 +16,25 @@ class CommentPackServiceProvider extends ServiceProvider
 
         // including the routes of the package
         include __DIR__ . '/Http/routes.php';
+        /*
+        * Publishing files
+        * */
+        // config
+        $this->publishes([__DIR__ . '/Config/CommentPack.php' => config_path('commentpack.php')], 'config');
 
+        // views
+        $this->publishes([
+            __DIR__ . '/Views/Frontend' => base_path('resources/views/frontend/modules/comment/'),
+        ]);
+        // database
+        $this->publishes([
+            __DIR__ . '/Database/migrations' => database_path('migrations'),
+        ], 'migrations');
+
+        // seeds
+        $this->publishes([
+            __DIR__ . '/Database/seeds/' => base_path('database/seeds')
+        ], 'seeds');
         // translations
         /*$this->publishes([
             __DIR__.'/Lang/ar' => base_path('resources/lang/ar'),
@@ -25,9 +43,9 @@ class CommentPackServiceProvider extends ServiceProvider
             __DIR__.'/Lang/en' => base_path('resources/lang/en'),
         ]);*/
 
-        $this->loadTranslationsFrom(__DIR__.'/Lang','CommentPack');
-        $this->loadViewsFrom(__DIR__.'/Views/','CommentPack');
-        $this->mergeConfigFrom( __DIR__.'/Config/CommentPack.php', 'CommentPack');
+        $this->loadTranslationsFrom(__DIR__ . '/Lang', 'CommentPack');
+        $this->loadViewsFrom(__DIR__ . '/Views/', 'CommentPack');
+        $this->mergeConfigFrom(__DIR__ . '/Config/CommentPack.php', 'CommentPack');
     }
 
     /**
@@ -41,32 +59,9 @@ class CommentPackServiceProvider extends ServiceProvider
             return new CommentPack();
         });
 
-        /*
-         * Publishing files
-         *
-         * */
-        // config
-        $this->publishes([
-            __DIR__.'/Config/CommentPack.php' => config_path(),
-        ], 'config');
-
-        // views
-        $this->publishes([
-            __DIR__.'/Views/Frontend' => base_path('resources/views/frontend/modules/comment'),
-        ]);
         /*$this->publishes([
             __DIR__.'/Views/Backend' => base_path('resources/views/backend/modules/comment'),
         ]);*/
-
-        // database
-        $this->publishes([
-            __DIR__.'../database/migrations' => database_path('migrations'),
-        ], 'migrations');
-
-        // seeds
-        $this->publishes([
-            __DIR__.'../database/seeds/' => base_path('database/seeds')
-        ], 'seeds');
 
 
     }
