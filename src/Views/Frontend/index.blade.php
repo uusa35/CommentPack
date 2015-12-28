@@ -150,6 +150,7 @@
             <div class="post-description">
                 <p>Bootdey is a gallery of free snippets resources templates and utilities for bootstrap css hmtl js framework. Codes for developers and web designers</p>
             </div>--}}
+
             <div class="post-footer">
                 <div class="row">
                     <div class="col-lg-12">
@@ -172,7 +173,7 @@
                             @if(count($book->comments) > 0)
                                 <div class="col-lg-12">
                                     <ul class="comments-list">
-                                        @foreach($comments as $key => $comment)
+                                        @foreach($book->comments as $key => $comment)
                                             <li class="comment"
                                                 style="{{ ($key & 1) ? 'margin-top: 35px; margin-bottom: 35px;' : ''  }};">
                                                 <div class="row">
@@ -183,7 +184,7 @@
                                                                  alt="avatar">
                                                         </a>
                                                     </div>
-                                                    <div class="col-lg-11">
+                                                    <div class="col-lg-10">
                                                         <div class="comment-body">
                                                             <div class="row">
                                                                 <div class="col-lg-10">
@@ -212,6 +213,14 @@
                                                             </div>--}}
                                                         </div>
                                                     </div>
+                                                    <div class="col-lg-1 hidden-xs">
+                                                        @if(Auth::id() == $comment->user_id)
+                                                            @if(!count($comment->children) > 0)
+                                                                <a href="{!!  route(Config::get('CommentPack.deleteParentCommentRoute'),$comment->id) !!}"
+                                                                   class="{!! Config::get('button.btn-delete') !!}">{!! Config::get('button.icon-delete') !!}</a>
+                                                            @endif
+                                                        @endif
+                                                    </div>
                                                 </div>
                                                 @if(count($comment->children) > 0)
                                                     @foreach($comment->children as $child)
@@ -223,17 +232,25 @@
                                                                              src="{!! asset('images/uploads/avatar/thumbnail/'.$child->user->avatar )!!}"
                                                                              alt="avatar">
                                                                     </div>
-                                                                    <div class="col-lg-10">
-                                                                        <div class="comment-body">
-                                                                            <div class="comment-heading">
-                                                                                <h4 class="user">{{ $child->user->name }}</h4>
-                                                                                <h5 class="time">
-                                                                                    - {{ $child->created_at->diffForHumans() }}</h5>
+                                                                    <div class="col-lg-9">
+                                                                        <div class="col-lg-11 col-xs-12">
+                                                                            <div class="comment-body">
+                                                                                <div class="comment-heading">
+                                                                                    <h4 class="user">{{ $child->user->name }}</h4>
+                                                                                    <h5 class="time">
+                                                                                        - {{ $child->created_at->diffForHumans() }}</h5>
+                                                                                </div>
+                                                                                <hr>
+                                                                                <p class="text-justify">
+                                                                                    {{ $child->body }}
+                                                                                </p>
                                                                             </div>
-                                                                            <hr>
-                                                                            <p class="text-justify">
-                                                                                {{ $child->body }}
-                                                                            </p>
+                                                                        </div>
+                                                                        <div class="col-lg-1 hidden-xs">
+                                                                            @if(Auth::id() == $child->user_id)
+                                                                                <a href="{!!  route(Config::get('CommentPack.deleteChildCommentRoute'),$child->id) !!}"
+                                                                                   class="{!! Config::get('button.btn-delete') !!}">{!! Config::get('button.icon-delete') !!}</a>
+                                                                            @endif
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -245,7 +262,7 @@
                                                 <div class="row comments-list">
                                                     <div class="col-lg-11 col-lg-offset-1">
                                                         <form method="post"
-                                                              action="{{ route(Config::get('CommentPack.postChildCommentRoute')) }}">
+                                                              action="{!! route(Config::get('CommentPack.postChildCommentRoute')) !!}">
                                                             {!! Form::token() !!}
                                                             {!! Form::hidden('comment_id',$comment->id) !!}
                                                             {!! Form::hidden('user_id',Auth::id()) !!}

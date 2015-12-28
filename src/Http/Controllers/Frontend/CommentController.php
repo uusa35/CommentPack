@@ -76,4 +76,35 @@ class CommentController extends Controller
         return redirect()->back()->with(['error' => trans('messages.error.updated')]);
 
     }
+
+    public function deleteParentComment($commentId)
+    {
+
+        $comment = $this->comment->where(['id' => $commentId])->first();
+
+        if (\Auth::id() == $comment->user_id) {
+
+            $this->comment->destroy($commentId);
+
+            return redirect()->back()->with(['success' => trans('messages.success.deleted')]);
+
+        }
+        return redirect()->back()->with(['error' => trans('messages.error.deleted')]);
+
+    }
+
+    public function deleteChildComment($childId)
+    {
+        $childComment = $this->child->where(['id' => $childId])->first();
+
+        if (\Auth::id() == $childComment->user_id) {
+
+            $this->child->destroy($childId);
+
+            return redirect()->back()->with(['success' => trans('messages.success.deleted')]);
+
+        }
+        return redirect()->back()->with(['error' => trans('messages.error.deleted')]);
+
+    }
 }

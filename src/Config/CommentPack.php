@@ -12,6 +12,10 @@ return [
     'controller' => 'Usama\CommentPack\Controllers\CommentController',
     'postParentComment' => 'Usama\CommentPack\Controllers\CommentController@postParentComment',
     'postChildComment' => 'Usama\CommentPack\Controllers\CommentController@postChildComment',
+    'deleteChildComment' => 'Usama\CommentPack\Controllers\CommentController@deleteChildComment',
+    'deleteParentComment' => 'Usama\CommentPack\Controllers\CommentController@deleteParentComment',
     'postParentCommentRoute' => 'postParentComment',
     'postChildCommentRoute' => 'postChildComment',
+    'deleteChildCommentRoute' => 'deleteChildComment',
+    'deleteParentCommentRoute' => 'deleteParentComment',
 ];
